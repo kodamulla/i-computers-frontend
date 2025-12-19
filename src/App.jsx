@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
@@ -9,6 +10,7 @@ import AdminPage from "./pages/adminPage";
 function App() {
   return (
     <BrowserRouter>
+    <Toaster position="top-right" />
       <div className="w-full h-screen bg-primary text-secondary">
         <Routes>
           
