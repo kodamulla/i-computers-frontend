@@ -2,5 +2,32 @@
 @theme{
     --color-primary: #F7FAFF;
     --color-secondary: #111827;
-    --color-accent: #2563EB;
+    --color-accent: #27302b;
+    --color-gold: #e29816
+}
+
+
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e0f2fe; /* Tailwind's blue-50, for example */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* Tailwind's blue-500, for example */
+  border-radius: 100vh; /* Optional: adds rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; /* Tailwind's blue-600 on hover */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #3b82f6 #e0f2fe; /* thumb color track color */
 }
