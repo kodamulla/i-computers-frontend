@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
+
 export default function AdminAddProductPage() {
     const [productID, setProductID] = useState("");
     const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default function AdminAddProductPage() {
     const [labelPrice, setLabelPrice] = useState(0);
     const [category, setCategory] = useState("CPU");
     const [stock, setStock] = useState("0");
-    const [images, setImageURL] = useState("");
+    const [files, setImageURL] = useState("");
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const[isAvailable, setIsAvailable] = useState(true);
@@ -22,20 +23,44 @@ export default function AdminAddProductPage() {
 
 
     async function addProduct(){
+
+        
         const token = localStorage.getItem("token");
         if(token == null){
             toast.error("You must be logged in to add a product");
             navigate("/login");
             return;
         }
+
+        console.log(files);
+        const imagePromises = []
+        
+    //     files.forEach((file) => {
+    //         const promise = upload(file);
+    //         imagePromises.push(promise);
+    //     }
+    // )
+
+    for (let i = 0; i < files.length; i++) {
+        const promise = uploadFile(files[i]);
+        imagePromises.push(promise);
+    }
+
+    const images = await Promise.all(imagePromises).catch((error) => {
+        toast.error("Error uploading images. Please try again.");
+        console.log(error);
+        return;
+    });
+
+  
         if(productID=="" || name=="" || description=="" || price <= 0 || category=="" || stock <=0 || images==""){
             toast.error("Please fill all the required fields");
             return;
 
     }
     try{
-        const altNamesArray = altName.split(",").map(name => name.trim());
-        const imagesArray = images.split(",").map(url => url.trim());
+        const altNamesArray = altName.split(",")
+       
         await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/products", {
             productID: productID,
             name: name,
@@ -45,7 +70,7 @@ export default function AdminAddProductPage() {
             labelPrice: labelPrice,
             category: category,
             stock: stock,
-            images: imagesArray,
+            images: images,
             brand: brand,
             model: model,
             isAvailable: isAvailable
@@ -100,7 +125,15 @@ export default function AdminAddProductPage() {
             </div>
             <div className="my-[10px] w-full">
             <label>Images</label>
-            <input type="text" value={images} onChange={(e) => setImageURL(e.target.value)} className="w-full h-[40px] rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent border border-accent shadow-2xl px-[20px]" />
+            <input 
+            type="file" 
+            multiple={true}
+            onChange={(e) => setFiles(e.target.files)}
+            
+            
+
+            
+            className="w-full h-[40px] rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent border border-accent shadow-2xl px-[20px]" />
             </div>
             <div className="my-[10px] flex flex-col w-[30%]">
             <label>Category</label>
