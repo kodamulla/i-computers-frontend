@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Loader from "../../components/loader.jsx";
 import ProductDeleteButton from "../../components/productDeleteButton.jsx";
@@ -9,6 +10,7 @@ import ProductDeleteButton from "../../components/productDeleteButton.jsx";
 export default function AdminProductsPage() {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!loaded) {
@@ -81,6 +83,18 @@ export default function AdminProductsPage() {
                 </td>
                 <td className="px-4 py-4 text-center text-xs">
                   <div>
+                    {/* <Link 
+                      to="/admin/update-product"
+                      className="bg-black-50 text-black border border-black px-3 py-1 rounded-full text-xs font-semibold hover:bg-black-600 hover:text-black transition-all duration-300 active:scale-95 shadow-sm"
+                      state={item}
+                      >Edit</Link>  */}
+                    <button
+                      onClick={() => {navigate("/admin/update-product", {state: item})
+                      }}
+                      className="bg-black-50 text-black border border-black px-3 py-1 rounded-full text-xs font-semibold hover:bg-black-600 hover:text-black transition-all duration-300 active:scale-95 shadow-sm mr-2"
+                     > 
+                      Edit
+                    </button>
                    <ProductDeleteButton productId = {item.productID}/>
                    </div>
                 </td>
