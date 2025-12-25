@@ -2,6 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import AdminProductsPage from "./admin/adminProductsPage";
 import AdminAddProductPage from "./admin/adminAddProductPage"; 
 import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
+import AdminOrdersPage from "./admin/adminOrdersPage";
 import { FaClipboardList } from "react-icons/fa";
 import { BsBoxes } from "react-icons/bs";
 import { LuUsers } from "react-icons/lu";
@@ -38,7 +39,7 @@ export default function AdminPage() {
       <div className="flex-1 h-full bg-primary rounded-l-[40px] overflow-y-auto border-l-8 border-accent">
         <div className="p-8">
           <Routes>
-            <Route path="/" element={<h1 className="text-2xl font-bold">Orders Management</h1>} />
+            <Route path="/" element={<AdminOrdersPage />} />
             <Route path="products" element={<AdminProductsPage />} />
             <Route path="add-product" element={<AdminAddProductPage />} />
             <Route path="update-product" element={<AdminUpdateProductPage />} />
