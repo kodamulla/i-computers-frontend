@@ -17,10 +17,10 @@ export default function ProductPage() {
         }
     });
     return(
-        <div className="w-full h-[calc(100vh-100px)]  flex items-center justify-center">
+        <div className="w-full min-h-[calc(100vh-100px)]  overflow-y-auto">
             {
                 !loaded?<Loader/>:
-                <div className="w-full flex justify-center items-center p-4 flex-row flex-wrap">
+                <div className="w-full flex justify-center items-center p-4 flex-row flex-wrap pt-24 gap-6">
                     {
                        products.map(
                         (item) => {

@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
+import ViewOrderInfo from "../../components/viewOrderinfo.jsx";
 
 
 import Loader from "../../components/loader.jsx";
@@ -62,26 +63,26 @@ export default function AdminOrdersPage() {
             {orders.map((order, index) => (
               <tr key={index} className="hover:bg-gray-50/50 transition-colors">
                 
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs text-black uppercase">
                   {order.orderId}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
                   {order.email}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
                   {order.name}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
                   {new Date(order.date).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
                   {order.status}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
                     LKR. {order.total.toFixed(2)}
                 </td>
-                <td className="px-4 py-4 font-mono text-xs text-gray-500 uppercase">
-                  
+                <td className="px-4 py-4 font-mono text-xs  text-black uppercase">
+                 <ViewOrderInfo order={order}/> 
                 </td>
               </tr>
             ))}
