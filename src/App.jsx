@@ -6,13 +6,17 @@ import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import RegisterPage from "./pages/registerPage";
 import AdminPage from "./pages/adminPage";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 
 import TestPage from "./pages/testPage.jsx";
 
+// 374856593474-cjn173qbgmkhvd4pfbnvo67m14s78hmn.apps.googleusercontent.com
+
 
 function App() {
   return (
+    <GoogleOAuthProvider clientId="374856593474-cjn173qbgmkhvd4pfbnvo67m14s78hmn.apps.googleusercontent.com">
     <BrowserRouter>
     <Toaster position="top-right" />
       <div className="w-full h-screen bg-primary text-secondary">
@@ -30,6 +34,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 }
 

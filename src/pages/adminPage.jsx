@@ -7,11 +7,38 @@ import { FaClipboardList } from "react-icons/fa";
 import { BsBoxes } from "react-icons/bs";
 import { LuUsers } from "react-icons/lu";
 import { MdOutlineRateReview } from "react-icons/md";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import Loader from "../components/loader";
 
 export default function AdminPage() {
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token == null) {
+      window.location.href = "/";
+      return;
+      
+    }
+    axios.get(import.meta.env.VITE_BACKEND_URL + "/api/users/", {
+      headers: { Authorization: `Bearer ${token}` }
+    }).then((response) => {
+      if (response.data.role == "admin") {
+        setUser(response.data);
+      }
+      else {
+        window.location.href = "/";
+      }
+    }).catch(() => {
+      window.location.href = "/login";
+    });
+  }, []);
   return (
     <div className="w-full h-screen flex bg-accent overflow-hidden">
-      {/* Sidebar Section */}
+      {user ?
+      <>
       <div className="w-[300px] bg-accent h-full flex flex-col">
         <div className="w-full h-[100px] flex items-center p-4 border-b border-white/20">
           <img src="/logo.png" className="h-16" alt="logo" />
@@ -48,6 +75,10 @@ export default function AdminPage() {
           </Routes>
         </div>
       </div>
+      </>
+      :
+      <Loader/>
+      }
     </div>
   );
 }

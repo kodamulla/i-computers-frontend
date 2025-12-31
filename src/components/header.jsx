@@ -2,6 +2,7 @@ import { BiShoppingBag } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { LuListCollapse } from "react-icons/lu";
 import { useState } from "react";
+import UserData from "./userData";
 
 
 export default function Header() {
@@ -12,9 +13,13 @@ export default function Header() {
         <img src="/logo.png" className="h-[80px]" alt="logo"/>
         <div className="w-full h-full hidden lg:flex text-xl text-primary justify-center items-center gap-[20px]">
           <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/admin">Admin</Link>
+          <Link to="/products">Products</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
+        <div className="absolute right-24 top-0 h-full flex items-center hidden lg:flex">
+          <UserData/>
+
         </div>
         <Link to="/cart" className="absolute right-10 top-1/2 -translate-y-1/2 bg-primary">
           <BiShoppingBag/>
@@ -53,6 +58,9 @@ export default function Header() {
             >
               Contact 
               </a>
+              <div className="flex justify-center bg-accent p-2 rounded-full">
+              <UserData/>
+              </div>
              
             </div>
 

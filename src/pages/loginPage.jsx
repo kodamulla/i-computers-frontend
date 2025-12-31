@@ -2,16 +2,46 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Loader from "../components/loader";
+import { GrGoogle } from "react-icons/gr";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const googleLogin = useGoogleLogin({
+    onSuccess: (response) => {
+      setIsLoading(true);
+      axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/google-login", {
+        token: response.access_token,
+      }).then((res) => {
+        localStorage.setItem("token", res.data.token);
+        if(res.data.role === "admin"){
+          navigate("/admin");
+        }else{
+          navigate("/");
+        }
+        toast.success("Google Login Successful");
+        setIsLoading(false);
+      }).catch((err) => {
+        console.log(err);
+      })
+      setIsLoading(false);
+        
+        
+     },
+    onError: ()=>{toast.error("Google Login Failed");},
+    onNonOAuthError: ()=>{toast.error("Google Login Failed");},
+    
+  })
 
   async function login() {
     
     console.log("Login process started...");
     console.log("Using URL:", import.meta.env.VITE_BACKEND_URL + "api/users/login");
+    setIsLoading(true);
 
     try {
       
@@ -48,6 +78,7 @@ export default function LoginPage() {
       console.error("Login Error Details:", error);
       const errorMessage = error.response?.data?.message || "Login failed. Please check your credentials.";
       toast.error(errorMessage);
+      setIsLoading(false);
     }
   }
 
@@ -89,9 +120,15 @@ export default function LoginPage() {
           
           <button 
             onClick={login}
-            className="w-full h-[50px] bg-accent text-white text-[20px] font-bold rounded-lg border-[2px] border-accent hover:bg-transparent hover:text-accent transition-all duration-300"
+            className="w-full h-[50px] mb-[20px] bg-accent text-white text-[20px] font-bold rounded-lg border-[2px] border-accent hover:bg-transparent hover:text-accent transition-all duration-300"
           >
             Login
+          </button>
+          <button 
+            onClick={googleLogin}
+            className="w-full h-[50px] bg-accent text-white text-[20px] font-bold rounded-lg border-[2px] border-accent hover:bg-transparent hover:text-accent transition-all duration-300"
+          >
+            Login with <GrGoogle className="inline ml-2 mb-1"/>
           </button>
           
           <p className="text-white mt-4">
@@ -99,6 +136,7 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
+      {isLoading && <Loader />}
     </div>
   );
 }
