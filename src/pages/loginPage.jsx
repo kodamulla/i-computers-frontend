@@ -115,7 +115,7 @@ export default function LoginPage() {
           />
           
           <p className="text-white noy-italic w-full text-right mb-[20px]">
-            Forget your password? <Link to="/register" className="text-gold underline">Reset it here</Link>
+            Forgot your password? <Link to="/forgot-password" className="text-gold underline">Reset it here</Link>
           </p>
           
           <button 

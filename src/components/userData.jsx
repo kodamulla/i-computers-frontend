@@ -23,7 +23,7 @@ return (
     <>
     {user ?
     <div className="w-[150px] flex flex-row">
-        <img src={user.image} className="w-[50px] h-[50px] rounded-full" />
+        <img src={user.image} referrerPolicy="no-referrer" className="w-[50px] h-[50px] rounded-full" />
         <select className="bg-accent text-white ml-2 rounded-md p-1" value={selectedOption}
         onChange={
             (e) =>{ if(e.target.value==="logout"){

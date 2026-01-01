@@ -3,6 +3,7 @@ import AdminProductsPage from "./admin/adminProductsPage";
 import AdminAddProductPage from "./admin/adminAddProductPage"; 
 import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
 import AdminOrdersPage from "./admin/adminOrdersPage";
+import AdminUsersPage from "./admin/adminUsersPage";
 import { FaClipboardList } from "react-icons/fa";
 import { BsBoxes } from "react-icons/bs";
 import { LuUsers } from "react-icons/lu";
@@ -70,7 +71,7 @@ export default function AdminPage() {
             <Route path="products" element={<AdminProductsPage />} />
             <Route path="add-product" element={<AdminAddProductPage />} />
             <Route path="update-product" element={<AdminUpdateProductPage />} />
-            <Route path="users" element={<h1 className="text-2xl font-bold">Users Management</h1>} />
+            <Route path="users" element={<AdminUsersPage />} />
             <Route path="reviews" element={<h1 className="text-2xl font-bold">Reviews Management</h1>} />
           </Routes>
         </div>
