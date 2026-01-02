@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ViewOrderInfo from "../../components/viewOrderinfo.jsx";
+import ViewOrderInfo from "../../components/viewOrderInfo.jsx";
 
 
 import Loader from "../../components/loader.jsx";
