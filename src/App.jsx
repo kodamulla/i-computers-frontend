@@ -17,7 +17,7 @@ import ForgetPasswordPage from "./pages/forgetPasswordPage.jsx";
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId="374856593474-cjn173qbgmkhvd4pfbnvo67m14s78hmn.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="374856593474-i5omv9ljhifenvuvfvnnrvf9r3g0l1hu.apps.googleusercontent.com">
     <BrowserRouter>
     <Toaster position="top-right" />
       <div className="w-full h-screen bg-primary text-secondary">
