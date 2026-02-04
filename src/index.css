@@ -6,28 +6,72 @@
     --color-gold: #e29816
 }
 
-
-
 /* For WebKit browsers (Chrome, Safari, Edge) */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 12px; /* Set the width of the scrollbar */
+  width: 12px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #e0f2fe; /* Tailwind's blue-50, for example */
+  background: #e0f2fe;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #3b82f6; /* Tailwind's blue-500, for example */
-  border-radius: 100vh; /* Optional: adds rounded corners */
+  background: #3b82f6;
+  border-radius: 100vh;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #2563eb; /* Tailwind's blue-600 on hover */
+  background: #2563eb;
 }
 
 /* For Firefox */
 .custom-scrollbar {
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: #3b82f6 #e0f2fe; /* thumb color track color */
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #e0f2fe;
+}
+
+/* ===================================================== */
+/* =============== HOME PAGE ANIMATIONS ================= */
+/* ===================================================== */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateY(0);
+  }
+  33% {
+    transform: translateY(-100%);
+  }
+  66% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Utility animation classes */
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.animate-slideText {
+  animation: slideText 6s infinite;
+  height: 2.5rem;
+  overflow: hidden;
+}
+
+.animate-slideText span {
+  display: block;
+  height: 2.5rem;
 }
