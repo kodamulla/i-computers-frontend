@@ -7,6 +7,7 @@ import LoginPage from "./pages/loginPage";
 import RegisterPage from "./pages/registerPage";
 import AdminPage from "./pages/adminPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
 import TestPage from "./pages/testPage.jsx";
@@ -33,6 +34,7 @@ function App() {
           
           <Route path="/*" element={<HomePage />} />
         </Routes>
+        <SpeedInsights />
       </div>
     </BrowserRouter>
     </GoogleOAuthProvider>
