@@ -8,7 +8,6 @@ export default function ProductPage() {
     const [loaded, setLoaded] = useState(false);
     const [query, setQuery] = useState("");
 
-    
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -26,7 +25,6 @@ export default function ProductPage() {
         }
     }, [loaded]); 
 
-    
     const handleSearch = async (e) => {
         const value = e.target.value;
         setQuery(value);
@@ -45,30 +43,40 @@ export default function ProductPage() {
     };
 
     return (
-        <div className="w-full min-h-[calc(100vh-100px)] overflow-y-auto">
+        <div className="w-full min-h-[calc(100vh-90px)] bg-gradient-to-b from-blue-50 to-white overflow-y-auto">
+
             {!loaded ? (
                 <Loader />
             ) : (
-                <div className="w-full flex flex-col items-center p-4">
-                    <div className="w-full h-[100px] sticky top-0 bg-white z-10 flex justify-center items-center">
+                <div className="w-full flex flex-col items-center px-4 py-8">
+
+                    {/* Search Bar Section */}
+                    <div className="w-full sticky top-0 bg-white/80 backdrop-blur-md z-10 flex justify-center items-center py-6 shadow-sm rounded-xl mb-8">
                         <input
                             type="text"
                             placeholder="Search products..."
                             value={query}
                             onChange={handleSearch}
-                            className="w-[400px] p-2 border border-gray-300 rounded"
+                            className="w-full max-w-xl px-5 py-3 border border-blue-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition duration-300"
                         />
                     </div>
-                    
-                    <div className="w-full flex flex-row flex-wrap justify-center gap-6">
+
+                    {/* Products Grid */}
+                    <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {products.length > 0 ? (
                             products.map((item) => (
-                                <ProductCard key={item.productID || item._id} product={item} />
+                                <ProductCard 
+                                    key={item.productID || item._id} 
+                                    product={item} 
+                                />
                             ))
                         ) : (
-                            <p>No products found.</p>
+                            <div className="col-span-full text-center text-gray-500 text-lg mt-10">
+                                No products found.
+                            </div>
                         )}
                     </div>
+
                 </div>
             )}
         </div>
